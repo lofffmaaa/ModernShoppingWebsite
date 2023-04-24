@@ -1,10 +1,29 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const ProductsCard = ({ product }) => {
+  const _id = product?.title;
+  const idString = (_id) => {
+    return String(_id).toLowerCase().split(" ").join("");
+  };
+
+  const rootId = idString(_id);
+  const navigate = useNavigate();
+  console.log(rootId);
+  const handleDetails = () => {
+    navigate(`/product/${rootId}`, {
+      state: {
+        item: product,
+      },
+    });
+  };
   return (
-    <div className={"group"}>
-      <div className={"w-full h-96 cursor-pointer overflow-hidden"}>
+    <div className={"group relative"}>
+      <div
+        className={"w-full h-96 cursor-pointer overflow-hidden"}
+        onClick={handleDetails}
+      >
         <img
           className={
             "w-full h-full object-cover group-hover:scale-110 duration-500"
@@ -46,6 +65,20 @@ const ProductsCard = ({ product }) => {
               </span>
             </p>
           </div>
+        </div>
+        <div>
+          <p>{product?.category}</p>
+        </div>
+        <div className={"absolute top-4 right-0"}>
+          {product?.isNew && (
+            <p
+              className={
+                "bg-black text-white px-6 py-1 font-semi-bold border-2 border-gray-400"
+              }
+            >
+              Sale
+            </p>
+          )}
         </div>
       </div>
     </div>

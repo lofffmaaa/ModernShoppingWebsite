@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import Products from "../components/Products/Products";
-import Footer from "../components/Footer/Footer";
 import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
@@ -17,7 +16,6 @@ const Home = () => {
     <div>
       <Banner />
       <Products products={products} />
-      <Footer />
     </div>
   );
 };

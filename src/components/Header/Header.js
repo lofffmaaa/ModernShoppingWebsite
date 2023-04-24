@@ -1,5 +1,6 @@
 import React from "react";
 import { cardImage, cart, gitHubLogo } from "../../assets";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,9 +14,15 @@ const Header = () => {
           "max-w-screen-xl h-full mx-auto flex items-center justify-between"
         }
       >
-        <div>
-          <img src={gitHubLogo} alt="gitHubLogoDark" className={"w-16 h-16"} />
-        </div>
+        <Link to={"/"}>
+          <div>
+            <img
+              src={gitHubLogo}
+              alt="gitHubLogoDark"
+              className={"w-16 h-16"}
+            />
+          </div>
+        </Link>
 
         {/*  Pages*/}
         <div className={"flex items-center gap-8"}>
