@@ -9,7 +9,7 @@ const CardItem = () => {
   const productData = useSelector((state) => state.bazar.productData);
 
   return (
-    <div className={"w-2/3 pr-10"}>
+    <div className={"w-2/3 pr-10 select-none"}>
       <div className={"w-full"}>
         <h2 className={"font-titleFont text-xl"}>Shopping Cart</h2>
       </div>

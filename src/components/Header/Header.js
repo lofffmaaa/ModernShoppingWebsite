@@ -2,11 +2,10 @@ import React from "react";
 import { cardImage2, cart, gitHubLogo } from "../../assets";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
 
 const Header = () => {
   const productData = useSelector((state) => state.bazar.productData);
-  console.log(productData);
+
   return (
     <div
       className={
