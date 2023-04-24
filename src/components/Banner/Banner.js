@@ -54,7 +54,7 @@ const Banner = () => {
         />
       </div>
       <div
-        className={"absolute w-fit left-0 right-0 mx-auto flex gap-8 bottom-44"}
+        className={"absolute w-fit left-0 right-0 bottom-5 mx-auto flex gap-8 "}
       >
         <div
           className={

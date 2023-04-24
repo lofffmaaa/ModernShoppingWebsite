@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MdOutlineStar } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/bazarSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const Product = () => {
+  const dispatch = useDispatch();
   const [details, setDetails] = useState({});
+  let [baseQty, setBaseQty] = useState(1);
   const Location = useLocation();
 
   useEffect(() => {
@@ -65,14 +70,18 @@ const Product = () => {
               <p className={"text-sm"}>Quantity</p>
               <div className={"flex items-center gap-4 text-sm font-semibold"}>
                 <button
+                  onClick={() =>
+                    setBaseQty(baseQty === 1 ? (baseQty = 1) : baseQty - 1)
+                  }
                   className={
                     "border h-5 font-normal text-lg flex items-center justify-center px-2 hover:text-gray-700 cursor-pointer duration-300 active:bg-black"
                   }
                 >
                   -
                 </button>
-                <span>{1}</span>
+                <span>{baseQty}</span>
                 <button
+                  onClick={() => setBaseQty(baseQty + 1)}
                   className={
                     "border h-5 font-normal text-lg flex items-center justify-center px-2 hover:text-gray-700 cursor-pointer duration-300 active:bg-black"
                   }
@@ -82,6 +91,18 @@ const Product = () => {
               </div>
             </div>
             <button
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    _id: details._id,
+                    title: details.title,
+                    image: details.image,
+                    price: details.price,
+                    quantity: baseQty,
+                    description: details.description,
+                  })
+                ) & toast.success(`${details.title} is added`)
+              }
               className={"bg-black text-white py-3 px-6 active:bg-gray-600"}
             >
               Add to cart
@@ -90,6 +111,18 @@ const Product = () => {
           <p className={"text-base text-gray-500"}>
             Category:
             <span className={"capitalize"}>{details?.category}</span>
+            <ToastContainer
+              position={"top-left"}
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss={true}
+              draggable={true}
+              pauseOnHover={true}
+              theme={"dark"}
+            />
           </p>
         </div>
       </div>

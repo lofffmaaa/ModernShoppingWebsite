@@ -1,8 +1,12 @@
 import React from "react";
-import { cardImage, cart, gitHubLogo } from "../../assets";
+import { cardImage2, cart, gitHubLogo } from "../../assets";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const Header = () => {
+  const productData = useSelector((state) => state.bazar.productData);
+  console.log(productData);
   return (
     <div
       className={
@@ -64,16 +68,18 @@ const Header = () => {
             </li>
           </ul>
 
-          <div className={"relative"}>
-            <img src={cardImage} alt="cardImage" className={"w-8 h-8"} />
-            <span
-              className={
-                "absolute w-6 top-1 left-2 text-sm flex items-center justify-center font-semi-bold font-bodyFont text-white"
-              }
-            >
-              0
-            </span>
-          </div>
+          <Link to={"/cart"}>
+            <div className={"relative"}>
+              <img src={cardImage2} alt="cardImage" className={"w-8 h-8"} />
+              <span
+                className={
+                  "absolute w-6 top-2 left-2 text-sm flex items-center justify-center font-semi-bold font-bodyFont text-black"
+                }
+              >
+                {productData?.length}
+              </span>
+            </div>
+          </Link>
 
           <img
             src={cart}
